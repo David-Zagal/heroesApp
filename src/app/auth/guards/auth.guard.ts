@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivateFn, CanMatchFn, Route, Router, RouterStateSnapshot, UrlSegment } from '@angular/router';
 import { Observable, tap } from 'rxjs';
 import { AuthService } from '../services/auth.service';
@@ -31,26 +31,26 @@ export class AuthGuard {
 	};
 }
 
-// const checkAuthStatus = (): boolean | Observable<boolean> => {
+const checkAuthStatus = (): boolean | Observable<boolean> => {
  	// se inyectan el AuthService y el Router
-// 	const authService: AuthService = inject (AuthService);
-// 	const router: Router = inject (Router);
+	const authService: AuthService = inject (AuthService);
+	const router: Router = inject (Router);
 
-// 	return authService.checkAuthentication ().pipe (
-// 		tap ((isAuthenticated: boolean) => {
-// 			if (!isAuthenticated) router.navigate (['./auth/login']);
-// 		})
-// 	);
-// };
+	return authService.checkAuthentication ().pipe (
+		tap ((isAuthenticated: boolean) => {
+			if (!isAuthenticated) router.navigate (['./auth/login']);
+		})
+	);
+};
 
-// export const canMatchGuard: CanMatchFn = (route: Route, segments: UrlSegment[]) => { // Tipado CanMatchFN
+export const canMatchGuard: CanMatchFn = (route: Route, segments: UrlSegment[]) => { // Tipado CanMatchFN
 	// console.log('CanMatch');
 	// console.log({ route, segments });
-	// return inject (AuthGuard).checkAuthStatus();
-// };
+	return checkAuthStatus();
+};
 
-// export const canActivateGuard: CanActivateFn = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {	// Hay que tener en cuenta el tipado CanActiveFn
+export const canActivateGuard: CanActivateFn = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {	// Hay que tener en cuenta el tipado CanActiveFn
 	// console.log ('CanActivate');
 	// console.log ({ route, state });
-	// return inject (AuthGuard).checkAuthStatus ();
-// };
+	return checkAuthStatus ();
+};
