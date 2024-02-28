@@ -11,7 +11,7 @@ export class AuthGuard {
 	private checkAuthStatus (): boolean | Observable<boolean> {
 		return this.authService.checkAuthentication ().pipe (
 			tap ((isAuthenticated: boolean) => {
-				if (!isAuthenticated) this.router.navigateByUrl ('auth'); // this.router.navigate (['./auth/login']);
+				if (!isAuthenticated) this.router.navigateByUrl ('./auth'); // this.router.navigate (['./auth/login']);
 			}),
 		);
 	}

@@ -5,7 +5,8 @@ import { Error404PageComponent } from './shared/pages/error404-page/error404-pag
 import { AuthGuard, canActivateGuard, canMatchGuard } from './auth/guards/auth.guard';
 import { PublicGuard } from './auth/guards/public.guard';
 
-// localhost:4200/auth/
+// dominio.com/
+// localhost:4200/
 const routes: Routes = [
 	{
 		path: 'auth',
@@ -16,8 +17,8 @@ const routes: Routes = [
 	{
 		path: 'heroes',
 		loadChildren: () => import ('./heroes/heroes.module').then (m => m.HeroesModule),
-		canActivate: [ canActivateGuard ],// AuthGuard
-		canMatch: [ canMatchGuard ],// AuthGuard
+		canActivate: [ AuthGuard ],// AuthGuard
+		canMatch: [ AuthGuard ],// AuthGuard
 	},
 	{
 		path: '404',
@@ -35,7 +36,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-	imports: [RouterModule.forRoot (routes, { useHash: true })],
+	imports: [RouterModule.forRoot (routes)],
 	exports: [RouterModule],
 })
 export class AppRoutingModule {}
