@@ -20,13 +20,13 @@ export class HeroPageComponent implements OnInit {
 		this.activatedRoute.params.pipe (
 			switchMap (({ id }) => this.heroesService.getHeroById (id)),
 		).subscribe (hero => {
-			if (!hero) return this.router.navigate (['/heroes/list']);
+			if (!hero) return this.router.navigate (['./heroes/list']);
 			// if (!hero) return this.router.navigateByUrl ('heroes');
 			return this.hero = hero;
 		});
 	}
 
 	goBack (): void {
-		this.router.navigateByUrl ('heroes/list');
+		this.router.navigateByUrl ('./heroes/list');
 	}
 }

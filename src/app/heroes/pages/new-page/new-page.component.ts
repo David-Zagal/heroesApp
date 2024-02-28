@@ -40,7 +40,7 @@ export class NewPageComponent implements OnInit {
 		this.activatedRoute.params.pipe (
 			switchMap (({ id }) => this.heroesService.getHeroById (id)),
 		).subscribe (hero => {
-			if (!hero) return this.router.navigateByUrl ('/');
+			if (!hero) return this.router.navigateByUrl ('./');
 			return this.heroForm.reset (hero);
 		});
 	}
@@ -60,7 +60,7 @@ export class NewPageComponent implements OnInit {
 			return;
 		}
 		this.heroesService.addHero (this.currentHero).subscribe (hero => {
-			this.router.navigate (['/heroes/edit', hero.id]);
+			this.router.navigate (['./heroes/edit', hero.id]);
 			this.showSanckbar (`${ hero.superhero } created!`);
 		});
 	}
@@ -77,13 +77,13 @@ export class NewPageComponent implements OnInit {
 			switchMap (() => this.heroesService.deleteHeroById (this.currentHero.id)),
 			filter ( (wasDeleted: boolean) => wasDeleted),
 			// tap (wasDeleted => console.log({ wasDeleted })),
-		).subscribe (() => this.router.navigate (['/heroes/list']));
+		).subscribe (() => this.router.navigate (['./heroes/list']));
 
 		// dialogRef.afterClosed ().subscribe (result => {
 		// 	if (!result) return;
 
 		// 	this.heroesService.deleteHeroById (this.currentHero.id).subscribe (wasDeleted => {
-		// 		if (wasDeleted) this.router.navigate (['/heroes']);
+		// 		if (wasDeleted) this.router.navigate (['./heroes']);
 		// 	});
 		// });
 	}
@@ -95,6 +95,6 @@ export class NewPageComponent implements OnInit {
 	}
 
 	goBack (): void {
-		this.router.navigateByUrl ('heroes/list');
+		this.router.navigateByUrl ('./heroes/list');
 	}
 }
