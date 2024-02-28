@@ -2,11 +2,11 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { Error404PageComponent } from './shared/pages/error404-page/error404-page.component';
-import { AuthGuard, canActivateGuard, canMatchGuard } from './auth/guards/auth.guard';
+import { AuthGuard } from './auth/guards/auth.guard';
 import { PublicGuard } from './auth/guards/public.guard';
 
 // dominio.com/
-// localhost:4200/
+// localhost:4200/auth/
 const routes: Routes = [
 	{
 		path: 'auth',
