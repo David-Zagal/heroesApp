@@ -16,8 +16,8 @@ const routes: Routes = [
 	{
 		path: 'heroes',
 		loadChildren: () => import ('./heroes/heroes.module').then (m => m.HeroesModule),
-		canActivate: [ canActivateGuard ],// AuthGuard
-		canMatch: [ canMatchGuard ],// AuthGuard
+		//canActivate: [ canActivateGuard ],// AuthGuard
+		//canMatch: [ canMatchGuard ],// AuthGuard
 	},
 	{
 		path: '404',
@@ -35,7 +35,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-	imports: [RouterModule.forRoot (routes),],
+	imports: [RouterModule.forRoot (routes, { useHash: true })],
 	exports: [RouterModule],
 })
 export class AppRoutingModule {}
