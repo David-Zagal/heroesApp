@@ -77,13 +77,13 @@ export class NewPageComponent implements OnInit {
 			switchMap (() => this.heroesService.deleteHeroById (this.currentHero.id)),
 			filter ( (wasDeleted: boolean) => wasDeleted),
 			// tap (wasDeleted => console.log({ wasDeleted })),
-		).subscribe (() => this.router.navigate (['./heroes/list']));
+		).subscribe (() => this.router.navigateByUrl ('heroes/list'));
 
 		// dialogRef.afterClosed ().subscribe (result => {
 		// 	if (!result) return;
 
 		// 	this.heroesService.deleteHeroById (this.currentHero.id).subscribe (wasDeleted => {
-		// 		if (wasDeleted) this.router.navigate (['./heroes']);
+		// 		if (wasDeleted) this.router.navigate (['/heroes']);
 		// 	});
 		// });
 	}
@@ -95,6 +95,6 @@ export class NewPageComponent implements OnInit {
 	}
 
 	goBack (): void {
-		this.router.navigateByUrl ('./heroes/list');
+		this.router.navigateByUrl ('heroes/list');
 	}
 }

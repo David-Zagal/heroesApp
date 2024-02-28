@@ -34,6 +34,6 @@ export class SearchPageComponent {
 	}
 
 	goBack (): void {
-		this.router.navigateByUrl ('./heroes/list');
+		this.router.navigateByUrl ('heroes/list');
 	}
 }
